@@ -1,57 +1,79 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title> Kayıt ol </title>
-          <meta charset="utf-8">
-</head>
-<body>
+<div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Sign Up for Free</h1>
+          
+          <form action="/" method="post">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Last Name<span class="req">*</span>
+              </label>
+              <input type="text"required autocomplete="off"/>
+            </div>
+          </div>
 
-<form method="POST" action="/kayıtlar.txt">
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off"/>
+          </div>
+          
+          <button type="submit" class="button button-block"/>Get Started</button>
+          
+          </form>
 
-<table border="1" align="center" cellpadding="3">
-<tr>
-<td colspan="2" align="center">
-<h3> Kayıt ol </h3>
-</td>
-</tr>
-<tr>
+        </div>
+        
+        <div id="login">   
+          <h1>Welcome Back!</h1>
+          
+          <form action="/" method="post">
+          
+            <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off"/>
+          </div>
+          
+          <p class="forgot"><a href="#">Forgot Password?</a></p>
+          
+          <button class="button button-block"/>Log In</button>
+          
+          </form>
 
-<tr>
-<td>Kullanıcı Adı</td>
-<td><input type="text" name="kullanici"></td>
-</tr>
-
-<tr>
-<td>Şifre</td>
-<td><input type="password" name="sifre"></td>
-</tr>
- 
-<tr>
-<td>Doğum Tarihi</td>
-<td><input type="date" name="dtarihi"></td>
-</tr>
-
-
-<tr>
-<td>Cinsiyet</td>
-<td>
-<input type="radio" name="cinsiyet" value="bay">Bay
-<input type="radio" name="cinsiyet" value="bayan">Bayan
-          <input type="radio" name="cinsiyet" value="bayan">Belirtmek  istemiyorum
-</td>
-</tr>
-
- 
-<tr>
-<td colspan="2" align="center">
-<input type="submit" 
-  value="Kaydet">
-</td>
-</tr>
- 
- 
-</table>
-</form>
- 
-</body>
-</html>
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
