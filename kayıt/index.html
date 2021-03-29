@@ -1,7 +1,7 @@
 <html>
 
 <body>
-      <form action="/test.txt" name="test" method="post">
+      <form action="/deneme.html" name="test" method="post">
 takma ad
 <input type="text" name="isim">
 <br>
@@ -11,15 +11,7 @@ sifre
    <input type="submit" value=" Tamam ">
 </form>
 
-<script type = "text/javascript">
-function WriteToFile(passForm)
-{
-var fso = new ActiveXObject("Scripting.FileSystemObject");
-var s = fso.CreateTextFile("C:\\Test.txt", true);
-s.WriteLine(document.passForm.input.value);
-s.Close();
-}
-</script>      
+
 </body>
       
 </html>
