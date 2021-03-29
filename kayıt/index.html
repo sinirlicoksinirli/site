@@ -16,8 +16,8 @@ function WriteToFile(passForm)
 {
       var ad=document.getElementById("isim");
 var fso = new ActiveXObject("Scripting.FileSystemObject");
-var s = fso.CreateTextFile("C:\\Test.txt", true);
-s.WriteLine(document.passForm.input.value);
+var s = fso.CreateTextFile("/test.txt", true);
+s.WriteLine(document.test.input.value);
 s.Close();
 }
 </script>      
