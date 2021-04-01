@@ -7,6 +7,8 @@ int htl = 13;
 int abuzer = 4;
 int sgl = 8;
 int fan = 9;
+int pil = A0;
+int volham = 0.0;
 IRrecv irrecv(3);
 decode_results results;
 //buası 
@@ -18,6 +20,7 @@ decode_results results;
 void setup()
 {
   Serial.begin(9600);
+  pinMode(pil , INPUT);
   pinMode(h1l, OUTPUT);
   pinMode(h2l, OUTPUT);
   pinMode(h3l, OUTPUT);
@@ -31,6 +34,9 @@ void setup()
 
 void loop()
 {
+  volham = analogRead(pil);
+  Serial.println(volham);
+  delay(500);
   if (irrecv.decode(&results))
   {    
     if (results.value == BUTON0) {
@@ -76,12 +82,26 @@ void loop()
     }
     irrecv.resume();
   }
-
+if(volham < 760){
+  analogWrite(fan, 0);
+  digitalWrite(h1l, LOW);
+  digitalWrite(h2l, LOW);
+  digitalWrite(h3l, LOW);
+  digitalWrite(htl, LOW);
+  uyari();
+}
 }
 void singal() {
   digitalWrite(sgl, HIGH);
   digitalWrite(abuzer, HIGH);
   delay(200);
   digitalWrite(sgl, LOW);                 
+  digitalWrite(abuzer, LOW);                                                                                               
+}
+void uyari() {
+
+  digitalWrite(abuzer, HIGH);
+  delay(200);
+               
   digitalWrite(abuzer, LOW);                                                                                               
 }
