@@ -1,0 +1,134 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(11, 12); // RX, TX
+int sagmh = 5;
+int solmh = 6;
+int sagm1 = 7;
+int sagm2 = 8;
+int solm1 = 9;
+int solm2 = 10;
+int onfar = 13;
+int arkafar = 2;
+int buz = 3;
+int btdurum = 4;
+int ldr = A0;
+int mh = 56;
+int isik;
+int g = 0;
+void setup() {
+  Serial.begin(9600);
+  mySerial.begin(9600);
+  pinMode(sagmh , OUTPUT);
+  pinMode(solmh , OUTPUT);
+  pinMode(sagm1 , OUTPUT);
+  pinMode(sagm2 , OUTPUT);
+  pinMode(solm1 , OUTPUT);
+  pinMode(solm2 , OUTPUT);
+  pinMode(onfar , OUTPUT);
+  pinMode(arkafar , OUTPUT);
+  pinMode(buz , OUTPUT);
+  pinMode(btdurum , INPUT);
+
+}
+
+void loop() {
+  isik = analogRead(ldr);
+  analogWrite(solmh, mh);
+  analogWrite(sagmh, mh);
+  int btd = digitalRead(btdurum);
+  if (btd == 0) {
+    digitalWrite(buz, HIGH);
+    delay(150);
+    digitalWrite(buz, LOW);
+    delay(150);
+    dur();
+    //geber();
+  }
+  if (mySerial.available()) {
+    char data = mySerial.read();
+    if (data == 'a') {
+
+      delay(250);
+      mh = mh + 20;
+    }
+    if (data == 'z') {
+
+      delay(250);
+      mh = mh - 20;
+    }
+    if (data == 'i') {
+      ileri();
+    }
+    if (data == 'd') {
+      dur();
+    }
+    if (data == 'o') {
+      sag();
+    }
+    if (data == 's') {
+      sol();
+    }
+    if (data == 'g') {
+      geri();
+    }
+    if (data == 'l') {
+      onfar1();
+      
+    }
+    if (data == 't') {
+      arkafar1();
+    }
+    if (data == 'u') {
+      geber();
+
+    }
+
+  }
+
+  if (mh < 56) {
+    mh = 56;
+  }
+  if (mh > 255) {
+    mh = 255;
+  }
+}
+void ileri() {
+  digitalWrite(solm1, HIGH);
+  digitalWrite(solm2, LOW);
+  digitalWrite(sagm1, HIGH);
+  digitalWrite(sagm2, LOW);
+}
+void dur() {
+  digitalWrite(solm1, LOW);
+  digitalWrite(solm2, LOW);
+  digitalWrite(sagm1, LOW);
+  digitalWrite(sagm2, LOW);
+}
+void sag () {
+  digitalWrite(solm1, HIGH);
+  digitalWrite(solm2, LOW);
+  digitalWrite(sagm1, LOW);
+  digitalWrite(sagm2, LOW);
+}
+void sol() {
+  digitalWrite(solm1, LOW);
+  digitalWrite(solm2, LOW);
+  digitalWrite(sagm1, HIGH);
+  digitalWrite(sagm2, LOW);
+}
+void geri() {
+  digitalWrite(solm1, LOW);
+  digitalWrite(solm2, HIGH);
+  digitalWrite(sagm1, LOW);
+  digitalWrite(sagm2, HIGH);
+}
+void geber() {
+  digitalWrite(onfar, LOW);
+  digitalWrite(arkafar, LOW);
+}
+void onfar1() {
+  digitalWrite(onfar, HIGH);
+}
+void arkafar1() {
+  digitalWrite(arkafar, HIGH);
+}
